@@ -1,0 +1,19 @@
+[
+  {
+    "timestamp": "2026-08-18T21:53:48.510196Z",
+    "bucket_name": "prod-health-data",
+    "remediations": [
+      "ENFORCED_PUBLIC_ACCESS_BLOCK",
+      "ENFORCED_SERVER_SIDE_ENCRYPTION_AES256"
+    ],
+    "status": "REMEDIATED_COMPLIANT"
+  },
+  {
+    "timestamp": "2026-08-18T21:53:48.510338Z",
+    "bucket_name": "chaos-corrupted-bucket",
+    "remediations": [
+      "ENFORCED_PUBLIC_ACCESS_BLOCK"
+    ],
+    "status": "REMEDIATED_COMPLIANT"
+  }
+]
