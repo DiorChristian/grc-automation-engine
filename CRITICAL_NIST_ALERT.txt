@@ -1,0 +1,5 @@
+CRITICAL COMPLIANCE ALERT
+Timestamp: 2026-08-12 20:59:48
+Control Triggered: NIST SP 800-53 AU-6
+Failure Rate: 100.0% (Exceeds 20.0% threshold)
+Action Required: Immediate incident review for flagged roles: {'receptionist', 'billing'}

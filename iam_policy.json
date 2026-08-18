@@ -1,0 +1,23 @@
+[
+  {
+    "username": "developer_intern",
+    "policy_name": "DevTempAccess",
+    "effect": "Allow",
+    "action": "s3:GetObject",
+    "resource": "arn:aws:s3:::dev-temp-exports/*"
+  },
+  {
+    "username": "contractor_mike",
+    "policy_name": "ScopedContractorAccess",
+    "effect": "Allow",
+    "action": "s3:GetObject",
+    "resource": "arn:aws:s3:::contractor-temp-vault/*"
+  },
+  {
+    "username": "sec_auditor",
+    "policy_name": "ReadOnlySecurity",
+    "effect": "Allow",
+    "action": "s3:ListAllMyBuckets",
+    "resource": "arn:aws:s3:::*"
+  }
+]

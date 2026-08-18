@@ -1,0 +1,13 @@
+--- HIPAA COMPLIANCE AUDIT REPORT ---
+Generated On: 2026-08-12 20:59:48
+Source Log: hipaa_audit.log
+
+--- SUMMARY METRICS ---
+Total Inspected Events: 2
+Allowed Accesses: 0
+Security Violations (DENIED): 2
+Non-Compliance Rate: 100.0%
+
+--- FLAGGED ROLES ---
+Roles Triggering Alerts: {'receptionist', 'billing'}
+-------------------------------------

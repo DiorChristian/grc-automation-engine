@@ -1,0 +1,26 @@
+[
+  {
+    "eventId": "evt-101",
+    "eventTime": "2026-08-17T20:15:00Z",
+    "eventName": "GetObject",
+    "userIdentity": { "userName": "developer_intern" },
+    "sourceIPAddress": "192.168.1.50",
+    "responseElements": { "status": "200" }
+  },
+  {
+    "eventId": "evt-102",
+    "eventTime": "2026-08-17T20:22:10Z",
+    "eventName": "DeleteTrail",
+    "userIdentity": { "userName": "contractor_mike" },
+    "sourceIPAddress": "45.33.21.110",
+    "responseElements": { "status": "AccessDenied" }
+  },
+  {
+    "eventId": "evt-103",
+    "eventTime": "2026-08-17T20:30:45Z",
+    "eventName": "PutBucketPolicy",
+    "userIdentity": { "userName": "unknown_actor" },
+    "sourceIPAddress": "185.220.101.5",
+    "responseElements": { "status": "AccessDenied" }
+  }
+]

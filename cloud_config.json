@@ -1,0 +1,6 @@
+[
+  {"bucket_name": "company-public-website", "is_public": true, "encryption": "AES256"},
+  {"bucket_name": "hr-employee-data", "is_public": false, "encryption": "AES256"},
+  {"bucket_name": "dev-backup-logs", "is_public": false, "encryption": "NONE"},
+  {"bucket_name": "unprotected-vendor-exports", "is_public": true, "encryption": "NONE"}
+]

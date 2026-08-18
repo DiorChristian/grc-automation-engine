@@ -1,0 +1,6 @@
+user:admin, status:SUCCESS
+user:dev_intern, status:FAILED
+user:dev_intern, status:FAILED
+user:johndoe, status:SUCCESS
+user:dev_intern, status:FAILED
+user:admin, status:FAILED

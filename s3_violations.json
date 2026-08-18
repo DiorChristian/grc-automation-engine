@@ -1,0 +1,14 @@
+[
+  {
+    "bucket_name": "prod-health-data",
+    "is_public": true,
+    "unencrypted": true,
+    "risk_level": "CRITICAL"
+  },
+  {
+    "bucket_name": "chaos-corrupted-bucket",
+    "is_public": true,
+    "unencrypted": false,
+    "risk_level": "HIGH"
+  }
+]

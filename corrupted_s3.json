@@ -1,0 +1,11 @@
+[
+  {
+    "bucket_name": "prod-health-data",
+    "encryption": null,
+    "public_access_block": {}
+  },
+  {
+    "bucket_name": "chaos-corrupted-bucket",
+    "encryption": "AES256"
+  }
+]
