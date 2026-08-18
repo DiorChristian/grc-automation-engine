@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "PolicyName": "AdminAccess-Dev",
+    "Role": "Developer",
+    "Action": "*",
+    "Resource": "*",
+    "Risk": "CRITICAL_OVER_PRIVILEGED"
+  },
+  {
+    "PolicyName": "OverPermissive-S3",
+    "Role": "DataAnalyst",
+    "Action": "s3:*",
+    "Resource": "*",
+    "Risk": "CRITICAL_OVER_PRIVILEGED"
+  }
+]
