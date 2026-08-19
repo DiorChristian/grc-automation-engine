@@ -1,4 +1,4 @@
-# Cloud GRC Automation Engine
+readme_text = """# Cloud GRC Automation Engine
 > Continuous Cloud Security Auditing, Self-Healing Infrastructure & Alerting Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -100,3 +100,9 @@ echo "Exit Code: $?"
 
 **Architected & Maintained by Dior Christian**  
 *Cloud Security & Governance, Risk, and Compliance (GRC) Engineer*
+"""
+
+with open("README.md", "w") as f:
+    f.write(readme_text)
+
+print("[SUCCESS] README.md generated successfully!")
