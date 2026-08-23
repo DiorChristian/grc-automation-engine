@@ -22,6 +22,8 @@ def run_step(script_name, description):
 # 1. Run S3 Storage Auditor
 s3_status = run_step("s3_auditor.py", "Scanning S3 Storage Compliance")
 
+s3_enc_status = run_step("s3_encryption_auditor.py", "Scanning S3 Encryption Compliance (SC-28)")
+
 if s3_status == 1:
     print("[PIPELINE TRIGGER] Storage violations detected! Launching Auto-Remediator...\n")
     run_step("s3_remediator.py", "Executing S3 Self-Healing Lockdown")
