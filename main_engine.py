@@ -23,6 +23,7 @@ def run_step(script_name, description):
 s3_status = run_step("s3_auditor.py", "Scanning S3 Storage Compliance")
 
 s3_enc_status = run_step("s3_encryption_auditor.py", "Scanning S3 Encryption Compliance (SC-28)")
+s3_pub_status = run_step("s3_public_access_auditor.py", "Scanning S3 Public Access Compliance (AC-3)")
 
 if s3_status == 1:
     print("[PIPELINE TRIGGER] Storage violations detected! Launching Auto-Remediator...\n")
