@@ -1,8 +1,9 @@
 {
   "resource_id": "s3-patient-data-bucket-01",
   "resource_type": "AWS::S3::Bucket",
-  "public_access_block": false,
-  "encryption_enabled": false,
-  "nist_controls_violated": ["AC-3", "SC-28"],
-  "environment": "production"
+  "public_access_block": true,
+  "encryption_enabled": true,
+  "nist_controls_violated": [],
+  "environment": "production",
+  "status": "REMEDIATED_COMPLIANT"
 }
