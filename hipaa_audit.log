@@ -1,0 +1,2 @@
+[2026-08-11 22:28:24] [DENIED] ALERT: Role 'billing' attempted unauthorized action 'view_ephi'!
+[2026-08-11 22:28:24] [DENIED] ALERT: Role 'receptionist' attempted unauthorized action 'view_invoices'!

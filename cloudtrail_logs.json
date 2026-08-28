@@ -1,0 +1,46 @@
+[
+  {
+    "eventId": "evt-101",
+    "eventTime": "2026-08-18T20:15:00Z",
+    "eventName": "DescribeInstances",
+    "eventSource": "ec2.amazonaws.com",
+    "userIdentity": {
+      "userName": "developer_intern",
+      "type": "IAMUser"
+    },
+    "responseElements": { "status": "SUCCESS" }
+  },
+  {
+    "eventId": "evt-102",
+    "eventTime": "2026-08-18T20:22:10Z",
+    "eventName": "StopLogging",
+    "eventSource": "cloudtrail.amazonaws.com",
+    "userIdentity": {
+      "userName": "contractor_mike",
+      "type": "IAMUser"
+    },
+    "responseElements": { "status": "SUCCESS" }
+  },
+  {
+    "eventId": "evt-103",
+    "eventTime": "2026-08-18T20:30:45Z",
+    "eventName": "DeleteSecurityGroup",
+    "eventSource": "ec2.amazonaws.com",
+    "userIdentity": {
+      "userName": "sec_auditor",
+      "type": "IAMUser"
+    },
+    "responseElements": { "status": "SUCCESS" }
+  },
+  {
+    "eventId": "evt-104",
+    "eventTime": "2026-08-18T20:45:00Z",
+    "eventName": "GetObject",
+    "eventSource": "s3.amazonaws.com",
+    "userIdentity": {
+      "userName": "developer_intern",
+      "type": "IAMUser"
+    },
+    "responseElements": { "status": "SUCCESS" }
+  }
+]

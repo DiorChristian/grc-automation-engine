@@ -1,0 +1,18 @@
+[
+  {
+    "eventId": "evt-102",
+    "eventTime": "2026-08-18T20:22:10Z",
+    "user": "contractor_mike",
+    "unauthorizedAction": "StopLogging",
+    "riskLevel": "CRITICAL_COMPLIANCE_BREACH",
+    "complianceControl": "NIST SP 800-53 AU-2 / SOC 2 CC6.8"
+  },
+  {
+    "eventId": "evt-103",
+    "eventTime": "2026-08-18T20:30:45Z",
+    "user": "sec_auditor",
+    "unauthorizedAction": "DeleteSecurityGroup",
+    "riskLevel": "CRITICAL_COMPLIANCE_BREACH",
+    "complianceControl": "NIST SP 800-53 AU-2 / SOC 2 CC6.8"
+  }
+]

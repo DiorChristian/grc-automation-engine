@@ -1,0 +1,11 @@
+venv/
+venv/
+.env
+*.pem
+.env
+__pycache__/
+*.pyc
+.venv/
+.terraform/
+.terraform/
+.terraform/

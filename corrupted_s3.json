@@ -1,0 +1,30 @@
+[
+  {
+    "bucket_name": "prod-health-data",
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    },
+    "encryption": "AES256"
+  },
+  {
+    "bucket_name": "chaos-corrupted-bucket",
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    },
+    "encryption": "AES256"
+  },
+  {
+    "bucket_name": "secure-finance-data",
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "BlockPublicPolicy": true
+    },
+    "encryption": "AES256"
+  }
+]

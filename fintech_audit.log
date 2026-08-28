@@ -1,0 +1,2 @@
+[2026-08-11 22:00:36] [DENIED] ALERT: Role 'teller' attempted unauthorized action 'withdraw_large'!
+[2026-08-11 22:00:36] [DENIED] ALERT: Role 'trader' attempted unauthorized action 'withdraw_large'!

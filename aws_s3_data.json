@@ -1,0 +1,38 @@
+[
+  {
+    "bucket_name": "prod-health-records",
+    "policy_status": {
+      "IsPublic": false
+    },
+    "public_access_block": {
+      "BlockPublicAcls": true
+    },
+    "acl_grants": [
+      "OwnerOnly"
+    ]
+  },
+  {
+    "bucket_name": "marketing-public-assets",
+    "policy_status": {
+      "IsPublic": false
+    },
+    "public_access_block": {
+      "BlockPublicAcls": true
+    },
+    "acl_grants": [
+      "OwnerOnly"
+    ]
+  },
+  {
+    "bucket_name": "dev-temp-exports",
+    "policy_status": {
+      "IsPublic": false
+    },
+    "public_access_block": {
+      "BlockPublicAcls": true
+    },
+    "acl_grants": [
+      "OwnerOnly"
+    ]
+  }
+]

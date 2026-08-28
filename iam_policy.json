@@ -1,0 +1,35 @@
+[
+  {
+    "PolicyName": "AdminAccess-Dev",
+    "Role": "Developer",
+    "Statements": [
+      {
+        "Effect": "Allow",
+        "Action": "*",
+        "Resource": "*"
+      }
+    ]
+  },
+  {
+    "PolicyName": "ReadOnly-Finance",
+    "Role": "Auditor",
+    "Statements": [
+      {
+        "Effect": "Allow",
+        "Action": ["s3:GetObject", "s3:ListBucket"],
+        "Resource": "arn:aws:s3:::finance-reports/*"
+      }
+    ]
+  },
+  {
+    "PolicyName": "OverPermissive-S3",
+    "Role": "DataAnalyst",
+    "Statements": [
+      {
+        "Effect": "Allow",
+        "Action": "s3:*",
+        "Resource": "*"
+      }
+    ]
+  }
+]
