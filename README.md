@@ -1,7 +1,7 @@
 # 🪐 NIST Cloud Sentinel: Enterprise GRC & Auto-Remediation Engine
-[![NIST Cloud Sentinel Demo](./thumbnail.jpeg)](https://youtu.be/9zMSsTNIVo4)
+[![Self-Healing Cloud Sentinel Movie ](./thumbnail.jpeg)](https://youtu.be/9zMSsTNIVo4)
 
-[![Autonomous Cloud Sentinel: Production Demo](./thumbnail1.jpg)](https://youtu.be/1CM9i_PCscY)
+[![Autonomous Cloud Sentinel Demo](./thumbnail1.jpg)](https://youtu.be/1CM9i_PCscY)
 
 
 # NIST Cloud Sentinel: Multi-Account GRC & Compliance Automation Engine
