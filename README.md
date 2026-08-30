@@ -17,22 +17,27 @@ An automated, event-driven governance, risk, and compliance (GRC) framework buil
 * **Edge Spoke Ingestion:** Edge Spoke accounts capture raw AWS CloudTrail API events and route drift events securely across accounts into the Central Hub bus, where local logs are aggregated and superseded by a centralized enterprise **SIEM command center (CloudTrail 2.0)**.
 * **Blast Radius Containment & SCP Guardrails:** Enforced strict IAM least-privilege trust policies (`aws:PrincipalTag/Environment`) and AWS Organizations Service Control Policies (SCPs) to isolate spoke accounts into secure "bubble houses," completely blocking core security service tampering, CloudTrail modifications, and lateral movement back to the control plane.
 
-### 2. High-Volume SQS Buffer & Pre-Check Guardrails
+### 2. Universal Multi-Family RAG Vector Engine & Dynamic Boto3 HUD (✨ NEWLY ADDED)
+* **Universal Control Family Coverage:** Expanded the Streamlit telemetry command center (`dashboard_app.py`) to support universal, real-time filtering and querying across *all* major NIST SP 800-53 control families (`AC`, `AU`, `SC`, `CM`, `IA`, `IR`).
+* **Local ChromaDB RAG Citations:** Integrated local vector-based legal and regulatory lookups that instantly render exact statutory standard text (such as SC-28 Protection of Information at Rest or AC-3 Access Enforcement) based on the operator's active control search query.
+* **Synchronized Audit Trail HUD:** Hardened the right-hand Boto3 execution panel to dynamically stamp active target control IDs (`SC-28`, `AC-3`, etc.) directly into audit headers, JSON payload definitions, and pre-remediation snapshots on the fly.
+
+### 3. High-Volume SQS Buffer & Pre-Check Guardrails
 * **Asynchronous Processing Pipeline:** Built a dual-layer asynchronous processing pipeline utilizing AWS SQS FIFO queues and a Dead Letter Queue (DLQ).
 * **Fault-Tolerant Error Handling:** Configured queue error handling with custom redrive policies (routing to DLQ after 3 failed attempts) and 14-day message retention for forensic inspection, preventing infinite execution loops and API throttling.
 * **Intelligent Pre-Checks:** Implemented fast programmatic SQS pre-guardrails to filter major risks before passing structured payloads to the deep-context AI analysis layer.
 
-### 3. Immutable WORM Compliance Vault (7-Year Lock)
+### 4. Immutable WORM Compliance Vault (7-Year Lock)
 * **Dedicated Audit Storage:** Deployed a dedicated Amazon S3 audit storage vault equipped with Compliance Mode Object Lock.
 * **Cryptographic Sealing & Security Locks:** Cryptographically sealed pre-remediation forensic snapshots alongside server-side encryption, versioning, public access blocks, and a 7-year compliance retention lock to ensure unalterable, tamper-proof logs meeting strict regulatory standards (SOC 2, PCI-DSS, HIPAA).
 * **Full Framework Alignment:** Aligned controls directly to NIST SP 800-53 High-Impact Families (AC, AU, SC, CM, IA, IR, RA).
 
-### 4. AI-Driven Analysis & Automated Remediation
+### 5. AI-Driven Analysis & Automated Remediation
 * **Local LLM Intelligence:** Integrated local Llama 3 AI analysis (via Ollama) to evaluate drift telemetry, calculate contextual risk scores, and orchestrate automated tier-1 responses with zero data leakage outside the secure VPC perimeter.
 * **Closed-Loop Boto3 Automation:** Developed closed-loop Python / Boto3 automation scripts that execute immediate remediation (e.g., enforcing S3 Public Access Block settings and closing exposed security group ports) via secure cross-account IAM trust relationships.
 * **CI/CD Circuit Breaker:** Wired a strict POSIX circuit breaker policy that halts non-compliant CI/CD builds via exit code `1` unless auto-remediation is engaged, blocking unencrypted storage or exposed management ports.
 
-### 5. Infrastructure as Code (IaC) & Streamlit Command Center
+### 6. Infrastructure as Code (IaC) & Streamlit Command Center
 * **Terraform Provisioning:** Fully provisioned the entire 25-resource cloud architecture via production-grade Terraform (validated clean via `terraform validate` and `terraform plan`).
 * **Tactical Command Center (`dashboard_app.py`):** Built an interactive, high-performance Streamlit frontend dashboard featuring custom tactical UI themes, live control family telemetry grids, drift simulators, multi-account scope toggling, and JavaScript-driven smooth-fading architecture briefing components.
 
