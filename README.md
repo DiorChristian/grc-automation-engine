@@ -4,49 +4,46 @@
 [![Enterprise Cloud Sentinel Demo](./thumbnail1.jpg)](https://youtu.be/eJ5s4WVHV4k)
 
 
-An enterprise-grade, multi-account, self-healing cloud compliance orchestrator and DevSecOps platform enforcing **NIST SP 800-53 High-Impact Guardrails** across global AWS environments. Designed to eliminate configuration drift, halt non-compliant CI/CD builds via POSIX circuit breakers, and execute automated Boto3 closed-loop auto-remediation in real time.
+# NIST Cloud Sentinel: Multi-Account GRC & Compliance Automation Engine
+
+An automated, event-driven governance, risk, and compliance (GRC) framework built for multi-account AWS environments. Designed to enforce continuous monitoring, guardrail policy enforcement, and immutable audit logging aligned with NIST SP 800-53 controls.
 
 ---
 
-## 🏗️ Architectural Overview & Data Flow
+## 📋 Complete Enterprise Architecture Briefing
 
-```mermaid
-graph LR
-    Spoke[Spoke Account / Bubble House] -->|CloudTrail / EventBridge| Hub[Central Hub Bus & SIEM]
-    Hub --> SQS[SQS FIFO Queue & DLQ]
-    SQS --> AI[Local Llama 3 AI Analyst Layer]
-    AI --> WORM[Immutable WORM Compliance Vault]
-    AI --> Lambda[Cross-Account Lambda + Boto3]
-    Lambda -->|Least-Privilege IAM Trust| SpokeRem[Remediated AWS Resource]
-```
-
----
-
-### 📋 Complete Enterprise Architecture Briefing *(✨ Newly Added)*
-
-### 1. Core Architecture & Multi-Account Hub-and-Spoke Model
+### 1. Core Architecture & Multi-Account Hub-and-Spoke Model (💫NEWLY ADDED)
 * **Enterprise Governance Framework:** Designed an enterprise multi-account security governance framework using a Hub-and-Spoke topology.
 * **Edge Spoke Ingestion:** Edge Spoke accounts capture raw AWS CloudTrail API events and route drift events securely across accounts into the Central Hub bus, where local logs are aggregated and superseded by a centralized enterprise **SIEM command center (CloudTrail 2.0)**.
-* **Blast Radius Containment:** Enforced strict IAM least-privilege trust policies and boundary guardrails to isolate spoke accounts into secure "bubble houses," containing blast radiuses locally and completely blocking lateral movement back to the central control plane.
+* **Blast Radius Containment & SCP Guardrails:** Enforced strict IAM least-privilege trust policies (`aws:PrincipalTag/Environment`) and AWS Organizations Service Control Policies (SCPs) to isolate spoke accounts into secure "bubble houses," completely blocking core security service tampering, CloudTrail modifications, and lateral movement back to the control plane.
 
 ### 2. High-Volume SQS Buffer & Pre-Check Guardrails
 * **Asynchronous Processing Pipeline:** Built a dual-layer asynchronous processing pipeline utilizing AWS SQS FIFO queues and a Dead Letter Queue (DLQ).
 * **Fault-Tolerant Error Handling:** Configured queue error handling with custom redrive policies (routing to DLQ after 3 failed attempts) and 14-day message retention for forensic inspection, preventing infinite execution loops and API throttling.
 * **Intelligent Pre-Checks:** Implemented fast programmatic SQS pre-guardrails to filter major risks before passing structured payloads to the deep-context AI analysis layer.
 
-### 3. AI-Driven Analysis & Automated Remediation
+### 3. Immutable WORM Compliance Vault (7-Year Lock)
+* **Dedicated Audit Storage:** Deployed a dedicated Amazon S3 audit storage vault equipped with Compliance Mode Object Lock.
+* **Cryptographic Sealing & Security Locks:** Cryptographically sealed pre-remediation forensic snapshots alongside server-side encryption, versioning, public access blocks, and a 7-year compliance retention lock to ensure unalterable, tamper-proof logs meeting strict regulatory standards (SOC 2, PCI-DSS, HIPAA).
+* **Full Framework Alignment:** Aligned controls directly to NIST SP 800-53 High-Impact Families (AC, AU, SC, CM, IA, IR, RA).
+
+### 4. AI-Driven Analysis & Automated Remediation
 * **Local LLM Intelligence:** Integrated local Llama 3 AI analysis (via Ollama) to evaluate drift telemetry, calculate contextual risk scores, and orchestrate automated tier-1 responses with zero data leakage outside the secure VPC perimeter.
 * **Closed-Loop Boto3 Automation:** Developed closed-loop Python / Boto3 automation scripts that execute immediate remediation (e.g., enforcing S3 Public Access Block settings and closing exposed security group ports) via secure cross-account IAM trust relationships.
 * **CI/CD Circuit Breaker:** Wired a strict POSIX circuit breaker policy that halts non-compliant CI/CD builds via exit code `1` unless auto-remediation is engaged, blocking unencrypted storage or exposed management ports.
 
-### 4. Immutable WORM Compliance Vault (7-Year Lock)
-* **Dedicated Audit Storage:** Deployed a dedicated Amazon S3 audit storage vault equipped with Compliance Mode Object Lock.
-* **Cryptographic Sealing:** Cryptographically sealed pre-remediation forensic snapshots to ensure unalterable, tamper-proof logs meeting strict regulatory standards (SOC 2, PCI-DSS, HIPAA).
-* **Full Framework Alignment:** Aligned controls directly to NIST SP 800-53 High-Impact Families (AC, AU, SC, CM, IA, IR, RA).
-
 ### 5. Infrastructure as Code (IaC) & Streamlit Command Center
-* **Terraform Provisioning:** Fully provisioned the entire cloud architecture via production-grade Terraform (validated clean via `terraform validate` and `terraform plan`).
+* **Terraform Provisioning:** Fully provisioned the entire 25-resource cloud architecture via production-grade Terraform (validated clean via `terraform validate` and `terraform plan`).
 * **Tactical Command Center (`dashboard_app.py`):** Built an interactive, high-performance Streamlit frontend dashboard featuring custom tactical UI themes, live control family telemetry grids, drift simulators, multi-account scope toggling, and JavaScript-driven smooth-fading architecture briefing components.
+
+---
+
+## 🚀 Local Deployment & Quickstart
+
+1. **Configure Variables:** Add your parameters to `terraform.tfvars`.
+2. **Validate Infrastructure Blueprint:**
+   ```bash
+   terraform plan
 
 ---
 
