@@ -5,5 +5,7 @@
   "encryption_enabled": true,
   "nist_controls_violated": [],
   "environment": "production",
-  "status": "REMEDIATED_COMPLIANT"
+  "status": "REMEDIATED_COMPLIANT",
+  "nist_control": "SC-28",
+  "event_type": "SC-28"
 }

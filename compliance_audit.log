@@ -4,3 +4,102 @@
 2026-08-28 17:00:56,688 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 2026-08-28 17:00:56,688 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-29 20:41:24,816 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.50.84:5001
+2026-08-29 20:41:24,816 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-29 20:41:24,824 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:41:25,131 - WARNING -  * Debugger is active!
+2026-08-29 20:41:25,137 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:43:55,566 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/app.py', reloading
+2026-08-29 20:43:55,628 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:43:56,036 - WARNING -  * Debugger is active!
+2026-08-29 20:43:56,040 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:44:20,687 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/app.py', reloading
+2026-08-29 20:44:20,757 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:44:21,075 - WARNING -  * Debugger is active!
+2026-08-29 20:44:21,079 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:44:49,140 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-08-29 20:44:49,140 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-29 20:44:49,143 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:44:49,444 - WARNING -  * Debugger is active!
+2026-08-29 20:44:49,449 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:45:51,920 - INFO - HTTP Request: GET https://chroma-onnx-models.s3.amazonaws.com/all-MiniLM-L6-v2/onnx.tar.gz "HTTP/1.1 200 OK"
+2026-08-29 20:45:54,168 - INFO - AUDIT PASS: Password meets standards. Ref: 
+2026-08-29 20:45:54,168 - INFO - 127.0.0.1 - - [29/Aug/2026 20:45:54] "POST /audit/password HTTP/1.1" 200 -
+2026-08-29 20:47:28,200 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/seed_db.py', reloading
+2026-08-29 20:47:28,200 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/seed_db.py', reloading
+2026-08-29 20:47:28,261 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:47:28,267 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:47:28,743 - WARNING -  * Debugger is active!
+2026-08-29 20:47:28,746 - WARNING -  * Debugger is active!
+2026-08-29 20:47:28,749 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:47:28,752 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:47:36,292 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/seed_db.py', reloading
+2026-08-29 20:47:36,292 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/seed_db.py', reloading
+2026-08-29 20:47:36,358 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:47:36,358 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:47:36,735 - WARNING -  * Debugger is active!
+2026-08-29 20:47:36,739 - WARNING -  * Debugger is active!
+2026-08-29 20:47:36,739 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:47:36,744 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:48:08,315 - INFO - AUDIT PASS: Password meets standards. Ref: 
+--- [NIST SP 800-53 Control: IA-5(1)] ---
+Password complexity baseline standards: Passwords must be at least 12 characters long, contain a mix of uppercase and lowercase letters, numbers, and special characters, and avoid common dictionary words.
+
+--- [NIST SP 800-53 Control: IA-2(1)] ---
+Multi-factor authentication (MFA) requirements: MFA must be enforced for all administrative and remote user access points to cloud infrastructure and sensitive databases.
+
+2026-08-29 20:48:08,316 - INFO - 127.0.0.1 - - [29/Aug/2026 20:48:08] "POST /audit/password HTTP/1.1" 200 -
+2026-08-29 20:49:38,690 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/seed_db.py', reloading
+2026-08-29 20:49:38,690 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/seed_db.py', reloading
+2026-08-29 20:49:38,756 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:49:38,760 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:49:39,214 - WARNING -  * Debugger is active!
+2026-08-29 20:49:39,217 - WARNING -  * Debugger is active!
+2026-08-29 20:49:39,218 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:49:39,221 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:53:56,163 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-08-29 20:53:56,163 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-29 20:53:56,167 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:53:56,470 - WARNING -  * Debugger is active!
+2026-08-29 20:53:56,476 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 20:59:02,604 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 20:59:02,665 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 20:59:03,144 - WARNING -  * Debugger is active!
+2026-08-29 20:59:03,150 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:04:38,896 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:04:38,944 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:04:39,447 - WARNING -  * Debugger is active!
+2026-08-29 21:04:39,452 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:08:49,647 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:08:49,699 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:08:50,197 - WARNING -  * Debugger is active!
+2026-08-29 21:08:50,202 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:11:33,169 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:11:33,218 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:11:33,692 - WARNING -  * Debugger is active!
+2026-08-29 21:11:33,697 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:13:55,909 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:13:55,961 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:13:56,433 - WARNING -  * Debugger is active!
+2026-08-29 21:13:56,437 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:23:10,976 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:23:11,029 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:23:11,538 - WARNING -  * Debugger is active!
+2026-08-29 21:23:11,544 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:26:03,389 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:26:03,441 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:26:03,929 - WARNING -  * Debugger is active!
+2026-08-29 21:26:03,934 - INFO -  * Debugger PIN: 810-477-529
+2026-08-29 21:29:01,829 - INFO -  * Detected change in '/Users/floss/Desktop/grc-automation-engine/dashboard_app.py', reloading
+2026-08-29 21:29:01,883 - INFO -  * Restarting with watchdog (fsevents)
+2026-08-29 21:29:02,360 - WARNING -  * Debugger is active!
+2026-08-29 21:29:02,365 - INFO -  * Debugger PIN: 810-477-529
