@@ -1,3 +1,23 @@
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region                      = "us-east-1"
+  access_key                  = "mock_access_key"
+  secret_key                  = "mock_secret_key"
+  skip_credentials_validation = true
+  skip_metadata_api_check     = true
+  skip_requesting_account_id  = true
+}
+
 # 1. Create the Dead Letter Queue (DLQ) for quarantined/failed events
 resource "aws_sqs_queue" "nist_sentinel_dlq" {
   name                      = "nist-sentinel-dead-letter-queue"
@@ -59,4 +79,9 @@ resource "aws_lambda_function" "remediation_handler" {
   handler       = "guardrail_engine.lambda_handler"
   runtime       = "python3.10"
   timeout       = 300
+}
+
+variable "security_hub_account_id" {
+  type        = string
+  description = "AWS Account ID for the central Security Hub / Hub account"
 }
