@@ -1,14 +1,30 @@
+# --- Terraform ---
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfplan
+.terraform/
+.terraform.lock.hcl
+
+# --- Python & Lambda Packaging ---
+__pycache__/
+*.py[cod]
+*$py.class
 venv/
-venv/
+env/
+.venv/
+*.zip
+*.tar.gz
+dist/
+build/
+
+# --- Environment & Keys ---
 .env
 *.pem
-.env
-__pycache__/
-*.pyc
-.venv/
-.terraform/
-.terraform/
-.terraform/
-.terraform/
-.terraform/
-.terraform/
+
+# --- IDEs & OS Files ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

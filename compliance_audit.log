@@ -1,3 +1,6 @@
 2026-07-26 14:46:09,879 - WARNING -  * Debugger is active!
 2026-07-26 14:46:09,882 - INFO -  * Debugger PIN: 810-477-529
 [2026-08-11 21:22:27] [DENIED] ALERT: Role 'developer' attempted unauthorized action 'view_ephi'!
+2026-08-28 17:00:56,688 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-28 17:00:56,688 - INFO - [33mPress CTRL+C to quit[0m
