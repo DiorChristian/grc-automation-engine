@@ -12,7 +12,7 @@ An automated, event-driven governance, risk, and compliance (GRC) framework buil
 
 ## 📋 Complete Enterprise Architecture Briefing
 
-### 1. 💫 Core Architecture & Multi-Account Hub-and-Spoke Model (NEWLY ADDED) 
+### 1. (✨ NEWLY ADDED) Core Architecture & Multi-Account Hub-and-Spoke Model (NEWLY ADDED) 
 * **Enterprise Governance Framework:** Designed an enterprise multi-account security governance framework using a Hub-and-Spoke topology.
 * **Edge Spoke Ingestion:** Edge Spoke accounts capture raw AWS CloudTrail API events and route drift events securely across accounts into the Central Hub bus, where local logs are aggregated and superseded by a centralized enterprise **SIEM command center (CloudTrail 2.0)**.
 * **Blast Radius Containment & SCP Guardrails:** Enforced strict IAM least-privilege trust policies (`aws:PrincipalTag/Environment`) and AWS Organizations Service Control Policies (SCPs) to isolate spoke accounts into secure "bubble houses," completely blocking core security service tampering, CloudTrail modifications, and lateral movement back to the control plane.
