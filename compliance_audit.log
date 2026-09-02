@@ -103,3 +103,30 @@ Multi-factor authentication (MFA) requirements: MFA must be enforced for all adm
 2026-08-29 21:29:01,883 - INFO -  * Restarting with watchdog (fsevents)
 2026-08-29 21:29:02,360 - WARNING -  * Debugger is active!
 2026-08-29 21:29:02,365 - INFO -  * Debugger PIN: 810-477-529
+2026-09-02 04:55:12,940 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-02 04:55:12,940 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-02 04:56:58,770 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-02 04:56:58,770 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-02 04:59:06,778 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-02 04:59:06,778 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-02 05:01:15,615 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-02 05:01:15,615 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-02 05:01:47,392 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-02 05:01:47,392 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-02 05:02:12,602 - INFO - 127.0.0.1 - - [02/Sep/2026 05:02:12] "GET / HTTP/1.1" 200 -
+2026-09-02 05:02:12,621 - INFO - 127.0.0.1 - - [02/Sep/2026 05:02:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

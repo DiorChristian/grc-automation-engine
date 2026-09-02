@@ -451,8 +451,21 @@ with ctrl_col:
     with btn_c1:
         if st.button("🚨 Simulate Configuration Drift"):
             st.session_state["is_breached"] = True
-            st.session_state.resource_dataset[0]["status"] = "NON_COMPLIANT"
-            st.warning("⚠️ DRIFT DETECTED: S3 Bucket Public Access Block disabled by dev-user!")
+            selected_family_code = filter_family.split(" ")[0] if filter_family != "All Families" else ""
+            query_str = search_query.strip().upper() if search_query else ""
+            
+            matched_any = False
+            for r in st.session_state.resource_dataset:
+                match_family = (filter_family == "All Families" or selected_family_code in r["family"])
+                match_search = (not query_str or query_str in r["nist_controls"].upper() or query_str in r["resource_id"].upper())
+                if match_family and match_search:
+                    r["status"] = "NON_COMPLIANT"
+                    matched_any = True
+            
+            if not matched_any:
+                st.session_state.resource_dataset[0]["status"] = "NON_COMPLIANT"
+                
+            st.warning("⚠️ DRIFT DETECTED: Guardrail baseline violated for active filter!")
             st.rerun()
             
     with btn_c2:
@@ -565,7 +578,15 @@ with ctrl_col:
             with open(payload_path, "w") as f:
                 json.dump(updated_payload, f, indent=2)
 
-            st.session_state.resource_dataset[0]["status"] = "REMEDIATED_COMPLIANT"
+            # Mark matched resources back to compliant upon remediation
+            selected_family_code = filter_family.split(" ")[0] if filter_family != "All Families" else ""
+            query_str = search_query.strip().upper() if search_query else ""
+            for r in st.session_state.resource_dataset:
+                match_family = (filter_family == "All Families" or selected_family_code in r["family"])
+                match_search = (not query_str or query_str in r["nist_controls"].upper() or query_str in r["resource_id"].upper())
+                if match_family and match_search:
+                    r["status"] = "REMEDIATED_COMPLIANT"
+
             progress_bar.progress(100)
             time.sleep(0.5)
             
