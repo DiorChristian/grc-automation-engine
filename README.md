@@ -12,11 +12,12 @@ An automated, event-driven governance, risk, and compliance (GRC) framework buil
 
 ## 📋 Complete Enterprise Architecture Briefing
 
-### 1. Multi-Layer SQS Queue Fallback & Batching Mechanism - (✨ NEWLY ADDED)
+### 1. Multi-Layer SQS Queue Fallback & Batching Mechanism - (✨ RECENTLY ENHANCED)
 * **Resilient Asynchronous Pipeline:** Implemented robust multi-layer SQS batching and message queue handlers (`sqs_manager.py`) capable of managing high-throughput event distribution across distributed cloud services.
+* **Intelligent Pre-Validation Gate:** Built an automated pre-check layer that validates critical compliance keys (`control_id`, `event_type`, `timestamp`) prior to dispatch, instantly trapping malformed payloads to protect downstream systems.
+* **Granular Retry & Error Isolation:** Configured a smart 3-attempt retry tracker with unique message fingerprinting (`hash`), ensuring partial batch failures are isolated and retried individually without failing the entire batch or risking infinite loops.
+* **Dead-Letter Routing & Forensic WORM Snapshots:** Automatically routes exhausted failures to an enterprise Dead-Letter Queue (DLQ) while simultaneously capturing comprehensive JSON forensic snapshots into an immutable S3 WORM audit vault.
 * **Safe Offline & Mock Fallbacks:** Integrated intelligent safety validation checks and fallback error handling for placeholder or unconfigured AWS SQS URLs, allowing seamless offline evaluation, local testing, and CI/CD validation without requiring active cloud credentials.
-* **Dead-Letter Routing & Buffering:** Configured automated redrive policies and payload buffering to isolate malformed payloads, preventing cascading failures and protecting downstream processing tiers.
-
 ### 2. Core Architecture & Multi-Account Hub-and-Spoke Model - (✨ PREVIOUSLY ADDED)
 * **Enterprise Governance Framework:** Designed an enterprise multi-account security governance framework using a Hub-and-Spoke topology.
 * **Edge Spoke Ingestion:** Edge Spoke accounts capture raw AWS CloudTrail API events and route drift events securely across accounts into the Central Hub bus, where local logs are aggregated and superseded by a centralized enterprise **SIEM command center (CloudTrail 2.0)**.
