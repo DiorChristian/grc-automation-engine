@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import logging
 from compliance_rag import ComplianceRAGEngine
+from sqs_manager import send_to_tier_queue
 
 app = Flask(__name__)
 
@@ -24,6 +25,16 @@ def audit_control():
     control_id = data.get("control_id", "AC-3").upper()
     resource_id = data.get("resource_id", "s3-patient-data-bucket-01")
     is_compliant = data.get("compliant", True)
+
+    # --- SQS Multi-Tier Batching Integration ---
+    payload = {
+        "body": f"Evaluating control {control_id} for resource {resource_id}",
+        "control_id": control_id,
+        "resource_id": resource_id
+    }
+    # Route non-compliant/drift alerts to high-priority queue, others to standard queue
+    send_to_tier_queue([payload], is_high_priority=not is_compliant)
+    # -------------------------------------------
 
     # Query local ChromaDB for exact regulatory compliance text across any family (AC, AU, SC, CM, IA, IR)
     rag_query_text = f"NIST control baseline standards and requirements for {control_id}"

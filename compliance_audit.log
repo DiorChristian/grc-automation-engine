@@ -130,3 +130,149 @@ Multi-factor authentication (MFA) requirements: MFA must be enforced for all adm
 2026-09-02 05:01:47,392 - INFO - [33mPress CTRL+C to quit[0m
 2026-09-02 05:02:12,602 - INFO - 127.0.0.1 - - [02/Sep/2026 05:02:12] "GET / HTTP/1.1" 200 -
 2026-09-02 05:02:12,621 - INFO - 127.0.0.1 - - [02/Sep/2026 05:02:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-09-21 01:32:46,889 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-21 01:32:46,889 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-21 01:33:58,947 - ERROR - Exception on /audit/control [POST]
+Traceback (most recent call last):
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/floss/Desktop/grc-automation-engine/app.py", line 36, in audit_control
+    send_to_tier_queue([payload], is_high_priority=not is_compliant)
+  File "/Users/floss/Desktop/grc-automation-engine/sqs_manager.py", line 33, in send_to_tier_queue
+    sqs.send_message_batch(QueueUrl=queue_url, Entries=entries)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 1076, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 1100, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/signers.py", line 108, in handler
+    return self.sign(operation_name, request)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/signers.py", line 200, in sign
+    auth.add_auth(request)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/auth.py", line 429, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2026-09-21 01:33:58,955 - INFO - 127.0.0.1 - - [21/Sep/2026 01:33:58] "[35m[1mPOST /audit/control HTTP/1.1[0m" 500 -
+2026-09-21 01:36:29,647 - ERROR - Exception on /audit/control [POST]
+Traceback (most recent call last):
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/floss/Desktop/grc-automation-engine/app.py", line 36, in audit_control
+    send_to_tier_queue([payload], is_high_priority=not is_compliant)
+  File "/Users/floss/Desktop/grc-automation-engine/sqs_manager.py", line 33, in send_to_tier_queue
+    }
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 1076, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 1100, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/signers.py", line 108, in handler
+    return self.sign(operation_name, request)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/signers.py", line 200, in sign
+    auth.add_auth(request)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/auth.py", line 429, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2026-09-21 01:36:29,648 - INFO - 127.0.0.1 - - [21/Sep/2026 01:36:29] "[35m[1mPOST /audit/control HTTP/1.1[0m" 500 -
+2026-09-21 01:37:44,306 - ERROR - Exception on /audit/control [POST]
+Traceback (most recent call last):
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/floss/Desktop/grc-automation-engine/app.py", line 36, in audit_control
+    send_to_tier_queue([payload], is_high_priority=not is_compliant)
+  File "/Users/floss/Desktop/grc-automation-engine/sqs_manager.py", line 33, in send_to_tier_queue
+    }
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 1076, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/client.py", line 1100, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/signers.py", line 108, in handler
+    return self.sign(operation_name, request)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/signers.py", line 200, in sign
+    auth.add_auth(request)
+  File "/Users/floss/Desktop/grc-automation-engine/venv/lib/python3.9/site-packages/botocore/auth.py", line 429, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2026-09-21 01:37:44,307 - INFO - 127.0.0.1 - - [21/Sep/2026 01:37:44] "[35m[1mPOST /audit/control HTTP/1.1[0m" 500 -
+2026-09-21 01:38:37,719 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.50.84:5002
+2026-09-21 01:38:37,719 - INFO - [33mPress CTRL+C to quit[0m
+2026-09-21 01:39:17,109 - WARNING - SQS Queue URL not configured or using placeholder. Skipping SQS dispatch.
+2026-09-21 01:39:17,665 - WARNING - AUDIT FAIL: Violation detected for control AC-3 on s3-patient-data-bucket-01. Ref: 
+2026-09-21 01:39:17,665 - INFO - 127.0.0.1 - - [21/Sep/2026 01:39:17] "POST /audit/control HTTP/1.1" 200 -
+2026-09-21 01:40:39,311 - WARNING - SQS Queue URL not configured or using placeholder. Skipping SQS dispatch.
+2026-09-21 01:40:39,370 - INFO - AUDIT PASS: Control AC-3 verified for s3-patient-data-bucket-01. Ref: 
+2026-09-21 01:40:39,370 - INFO - 127.0.0.1 - - [21/Sep/2026 01:40:39] "POST /audit/control HTTP/1.1" 200 -
+2026-09-21 01:41:11,089 - WARNING - AUDIT FAIL: Password policy violation detected. Ref: 
+2026-09-21 01:41:11,089 - INFO - 127.0.0.1 - - [21/Sep/2026 01:41:11] "POST /audit/password HTTP/1.1" 200 -
+2026-09-21 01:41:41,774 - INFO - AUDIT PASS: Password meets standards. Ref: 
+2026-09-21 01:41:41,774 - INFO - 127.0.0.1 - - [21/Sep/2026 01:41:41] "POST /audit/password HTTP/1.1" 200 -
