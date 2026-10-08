@@ -17,6 +17,12 @@ st.set_page_config(
     layout="wide"
 )
 
+# Handle clean reset flag triggered by remediation
+if st.session_state.get("reset_telemetry_view", False):
+    st.session_state["search_query"] = ""
+    st.session_state["filter_family"] = "All Families"
+    st.session_state["reset_telemetry_view"] = False
+
 # Force Session State Initialization
 if "is_breached" not in st.session_state:
     st.session_state["is_breached"] = False
@@ -29,6 +35,68 @@ if "last_audit_result" not in st.session_state:
 
 if "last_target_control" not in st.session_state:
     st.session_state["last_target_control"] = "AC-3"
+
+    # Initialize resource dataset with chronological audit history tracking
+if "resource_dataset" not in st.session_state:
+    st.session_state.resource_dataset = [
+        {
+            "resource_id": "s3-patient-data-bucket-01",
+            "resource_type": "AWS::S3::Bucket",
+            "status": "REMEDIATED_COMPLIANT",
+            "audit_history": [
+                {"timestamp": "2026-10-07T21:00:00Z", "status": "NON_COMPLIANT"},
+                {"timestamp": "2026-10-07T21:01:00Z", "status": "REMEDIATED_COMPLIANT"}
+            ],
+            "family": "AC / SC / AU",
+            "nist_controls": "AC-3, SC-8, SC-28, AU-2/3, AU-12",
+            "environment": "production"
+        },
+        {
+            "resource_id": "iam-admin-role-bypass-02",
+            "resource_type": "AWS::IAM::Role",
+            "status": "COMPLIANT",
+            "audit_history": [
+                {"timestamp": "2026-10-07T21:00:00Z", "status": "COMPLIANT"}
+            ],
+            "family": "AC / IA",
+            "nist_controls": "AC-2, AC-6, IA-2, IA-5",
+            "environment": "production"
+        },
+        {
+            "resource_id": "sg-db-cluster-ssh-open-03",
+            "resource_type": "AWS::EC2::SecurityGroup",
+            "status": "REMEDIATED_COMPLIANT",
+            "audit_history": [
+                {"timestamp": "2026-10-07T21:00:00Z", "status": "NON_COMPLIANT"},
+                {"timestamp": "2026-10-07T21:01:00Z", "status": "REMEDIATED_COMPLIANT"}
+            ],
+            "family": "AC / SC / CM",
+            "nist_controls": "AC-4, AC-17, SC-7, CM-6",
+            "environment": "staging"
+        },
+        {
+            "resource_id": "kms-prod-key-rotation-04",
+            "resource_type": "AWS::KMS::Key",
+            "status": "COMPLIANT",
+            "audit_history": [
+                {"timestamp": "2026-10-07T21:00:00Z", "status": "COMPLIANT"}
+            ],
+            "family": "SC / CM / RA",
+            "nist_controls": "SC-12, SC-13, CM-6, RA-5",
+            "environment": "production"
+        },
+        {
+            "resource_id": "cloudtrail-security-audit-05",
+            "resource_type": "AWS::CloudTrail::Trail",
+            "status": "COMPLIANT",
+            "audit_history": [
+                {"timestamp": "2026-10-07T21:00:00Z", "status": "COMPLIANT"}
+            ],
+            "family": "AU / IR",
+            "nist_controls": "AU-2, AU-3, AU-6, IR-4",
+            "environment": "production"
+        }
+    ]
 
 # Dynamic Visual Theme Engine (Red Canvas + Sleek Black Tactical Buttons)
 if st.session_state.get("is_breached", False):
@@ -460,10 +528,39 @@ with ctrl_col:
                 match_search = (not query_str or query_str in r["nist_controls"].upper() or query_str in r["resource_id"].upper())
                 if match_family and match_search:
                     r["status"] = "NON_COMPLIANT"
+                    if "audit_history" not in r:
+                        r["audit_history"] = []
+                    r["audit_history"].append({
+                        "timestamp": pd.Timestamp.now().isoformat(),
+                        "status": "NON_COMPLIANT"
+                    })
                     matched_any = True
+                
+            # Dynamically inject a brand-new drifting resource into the fleet inventory
+            new_drift_resource = {
+                "resource_id": f"aws-drift-incident-{len(st.session_state.resource_dataset) + 1}",
+                "resource_type": "AWS::EC2::Instance",
+                "status": "NON_COMPLIANT",
+                "audit_history": [
+                    {
+                        "timestamp": pd.Timestamp.now().isoformat(),
+                        "status": "NON_COMPLIANT"
+                    }
+                ],
+                "family": filter_family if filter_family != "All Families" else "AC / SI",
+                "nist_controls": query_str if query_str else "AC-3, SI-2",
+                "environment": "production"
+            }
+            st.session_state.resource_dataset.append(new_drift_resource)
             
             if not matched_any:
                 st.session_state.resource_dataset[0]["status"] = "NON_COMPLIANT"
+                if "audit_history" not in st.session_state.resource_dataset[0]:
+                    st.session_state.resource_dataset[0]["audit_history"] = []
+                st.session_state.resource_dataset[0]["audit_history"].append({
+                    "timestamp": pd.Timestamp.now().isoformat(),
+                    "status": "NON_COMPLIANT"
+                })
                 
             st.warning("⚠️ DRIFT DETECTED: Guardrail baseline violated for active filter!")
             st.rerun()
@@ -578,73 +675,31 @@ with ctrl_col:
             with open(payload_path, "w") as f:
                 json.dump(updated_payload, f, indent=2)
 
-            # Mark matched resources back to compliant upon remediation
-            selected_family_code = filter_family.split(" ")[0] if filter_family != "All Families" else ""
-            query_str = search_query.strip().upper() if search_query else ""
+            # Mark all fleet resources back to compliant upon universal remediation
             for r in st.session_state.resource_dataset:
-                match_family = (filter_family == "All Families" or selected_family_code in r["family"])
-                match_search = (not query_str or query_str in r["nist_controls"].upper() or query_str in r["resource_id"].upper())
-                if match_family and match_search:
-                    r["status"] = "REMEDIATED_COMPLIANT"
+                r["status"] = "REMEDIATED_COMPLIANT"
+                if "audit_history" not in r:
+                    r["audit_history"] = []
+                r["audit_history"].append({
+                    "timestamp": pd.Timestamp.now().isoformat(),
+                "status": "REMEDIATED_COMPLIANT"
+        })
 
-            progress_bar.progress(100)
+                progress_bar.progress(100)
             time.sleep(0.5)
-            
+
             status_text.empty()
             progress_bar.empty()
-            st.success(f"✅ Universal Remediation Complete: Boto3 Guardrails & RAG Citations synchronized for {target_control}!")
+            
+            # Set flag to reset filters cleanly on the next script pass
+            st.session_state["reset_telemetry_view"] = True
+            
+
+            target_control = st.session_state.get("target_control", "NIST-800-53")
+            st.success(f"🟢 Universal Remediation Complete: Boto3 Guardrails & RAG Citations synchronized for {target_control}!")
             st.rerun()
 
-# ==========================================
-# 📜 LIVE RAG CITATION & BOTO3 AUDIT HUD SECTION
-# ==========================================
-if st.session_state.get("last_rag_citation"):
-    st.divider()
-    col_rag, col_audit = st.columns([1, 1], gap="medium")
-    
-    with col_rag:
-        st.markdown("<h3 style='font-size: 1.15rem; font-family: Orbitron, sans-serif;'>🧠 LIVE LOCAL RAG CITATION</h3>", unsafe_allow_html=True)
-        citation_text = st.session_state["last_rag_citation"]
-        st.markdown(f"""
-            <div style="background-color: rgba(10, 12, 28, 0.9); border: 1px solid #5539CC; padding: 16px; border-radius: 12px; color: #38bdf8; font-family: monospace; font-size: 0.85rem; line-height: 1.5; word-wrap: break-word; overflow-wrap: break-word; max-height: 220px; overflow-y: auto;">
-                {str(citation_text).replace(chr(10), '<br>')}
-            </div>
-        """, unsafe_allow_html=True)
-        
-    with col_audit:
-        active_control_label = st.session_state.get("last_target_control", "AC-3")
-        st.markdown(f"<h3 style='font-size: 1.15rem; font-family: Orbitron, sans-serif;'>🛠️ BOTO3 AUDIT TRAIL ({active_control_label})</h3>", unsafe_allow_html=True)
-        
-        # Robust safety extraction: check 'audit_log' key, otherwise fallback to mock structured record if empty
-        audit_result = st.session_state.get("last_audit_result", {})
-        audit_log_data = {}
-        if isinstance(audit_result, dict):
-            audit_log_data = audit_result.get("audit_log", {})
-            if not audit_log_data and "action_taken" in audit_result:
-                audit_log_data = audit_result # If the result itself is the audit log
-                
-        if not audit_log_data:
-            audit_log_data = {
-                "event_id": "evt-1748612400",
-                "timestamp": "2026-08-29T21:15:00Z",
-                "event_source": "grc-auto-remediation-engine",
-                "nist_au_control": f"AU-2 / AU-3 (Enforcing Control: {active_control_label})",
-                "action_taken": [
-                    f"Boto3 API Guardrail Invoked for {active_control_label}",
-                    "Target Compliance Standard Enforced"
-                ],
-                "pre_remediation_snapshot": {
-                    "target_control": active_control_label,
-                    "status": "DRIFT_DETECTED"
-                },
-                "status": "SUCCESS_REMEDIATED"
-            }
-        else:
-            audit_log_data["nist_au_control"] = f"AU-2 / AU-3 (Enforcing Control: {active_control_label})"
-            
-        st.json(audit_log_data, expanded=True)
 
-st.divider()
 
 # ==========================================
 # 🏛️ ENTERPRISE ARCHITECTURE BRIEFING
@@ -707,7 +762,20 @@ if st.session_state["demo_msg"]:
 
 st.divider()
 
-df_inventory = pd.DataFrame(st.session_state.resource_dataset)
+
+
+# Format audit history as a text timeline for display without altering raw session data
+display_dataset = []
+for r in st.session_state.resource_dataset:
+    r_copy = r.copy()
+    if "audit_history" in r_copy and isinstance(r_copy["audit_history"], list):
+        items = [f"{e.get('timestamp', '')} [{e.get('status', '')}]" for e in r_copy["audit_history"]]
+        r_copy["audit_history"] = " | ".join(items)
+    display_dataset.append(r_copy)
+
+   
+df_inventory = pd.DataFrame(display_dataset)
+
 if filter_family != "All Families":
     family_code = filter_family.split(" ")[0]
     df_filtered = df_inventory[df_inventory["family"].str.contains(family_code)]
@@ -718,7 +786,13 @@ if search_query:
     df_filtered = df_filtered[df_filtered["nist_controls"].str.contains(search_query, case=False)]
 
 st.subheader("📊 MULTI-RESOURCE COMPLIANCE TELEMETRY GRID")
-st.dataframe(df_filtered, width="stretch")
+
+# Sort dataframe so recent updates/remediated rows float cleanly to the top
+if "status" in df_filtered.columns:
+    df_filtered = df_filtered.sort_values(by="status", ascending=False)
+    
+    df_filtered = df_filtered.reset_index(drop=True)
+st.dataframe(df_filtered, height=180, use_container_width=True)
 
 csv_data = df_filtered.to_csv(index=False).encode('utf-8')
 st.download_button(
@@ -731,14 +805,21 @@ st.download_button(
 if os.path.exists(payload_path):
     with open(payload_path, "r") as f:
         data = json.load(f)
-    
+
     st.divider()
-    st.subheader(f"🔍 TARGET RESOURCE DEEP-DIVE: {data.get('resource_id', 'S3 Resource')}")
-    st.json(data)
     
-    if "audit_log" in data:
-        st.subheader("📜 IMMUTABLE NIST AU AUDIT TRAIL (AU-2 / AU-3)")
-        st.json(data["audit_log"])
+    # Side-by-side HUD: Live Local RAG Citation & Boto3 Audit Trail
+    col_rag, col_audit = st.columns(2, gap="medium")
+    
+    with col_rag:
+        st.subheader("🧠 LIVE LOCAL RAG CITATION")
+        # Pulls the active control context if stored, or displays fallback text
+        rag_text = st.session_state.get("last_rag_citation", "--- [NIST SP 800-53 Rev. 5] ---\nActive Compliance Guardrail Enforced.")
+        st.info(rag_text)
+
+    with col_audit:
+        st.subheader(f"⚡ TARGET RESOURCE DEEP-DIVES: {data.get('resource_id', 'S3 Resource')}")
+        st.json(data)
 
 st.divider()
 st.subheader("🔒 COMPLETE NIST SP 800-53 HIGH-IMPACT GUARDRAIL MAPPINGS")

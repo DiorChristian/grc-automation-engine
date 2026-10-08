@@ -6,6 +6,6 @@
   "nist_controls_violated": [],
   "environment": "production",
   "status": "REMEDIATED_COMPLIANT",
-  "nist_control": "AC-17",
-  "event_type": "AC-17"
+  "nist_control": "SC-8",
+  "event_type": "SC-8"
 }
